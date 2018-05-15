@@ -6,15 +6,14 @@ class PersonsController < ApplicationController
   def show
   end
 
-  # GET /persons/new
   def new
-
   end
 
 
   def create
-    if params["persons"].role.equal?("Actor")
-      @actor = Actor.new(actor_params)
+    puts params[:person]
+    if params["role"].equal?("Actor")
+      @actor = Actor.new(params[:person])
 
       respond_to do |format|
         if @actor.save
@@ -26,8 +25,10 @@ class PersonsController < ApplicationController
         end
       end
     end
-    else if params["persons"].role.equal?("Director")
-       @director = Director.new(director_params)
+
+    else if true
+       @director = Director.new(params[:person])
+
 
        respond_to do |format|
          if @director.save
@@ -37,9 +38,12 @@ class PersonsController < ApplicationController
            format.html { render :new }
            format.json { render json: @director.errors, status: :unprocessable_entity }
          end
-         end
        end
+    end
   end
 
+  def person_params
+    params.permit(:person, :role)
+  end
 
 end
