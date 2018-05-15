@@ -1,4 +1,6 @@
 class Movie < ApplicationRecord
-  belongs_to :director_id
-  belongs_to :address_id
+  belongs_to :director
+  belongs_to :address
+
+  has_many :categories
 end
