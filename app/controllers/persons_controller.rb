@@ -1,6 +1,8 @@
 class PersonsController < ApplicationController
 
   def index
+    @actors = Actor.all
+    @directors = Directtor.all
   end
 
   def show
@@ -12,8 +14,8 @@ class PersonsController < ApplicationController
 
   def create
     puts params[:person]
-    if params["role"].equal?("Actor")
-      @actor = Actor.new(params[:person])
+    if params[:role] == "Actor"
+      @actor = Actor.new(person_params)
 
       respond_to do |format|
         if @actor.save
@@ -26,9 +28,8 @@ class PersonsController < ApplicationController
       end
     end
 
-    else if true
-       @director = Director.new(params[:person])
-
+    else if params[:role] == "Director"
+       @director = Director.new(person_params)
 
        respond_to do |format|
          if @director.save
@@ -43,7 +44,7 @@ class PersonsController < ApplicationController
   end
 
   def person_params
-    params.permit(:person, :role)
+    params.permit(:first_name, :last_name, :birth_date, :description)
   end
 
 end

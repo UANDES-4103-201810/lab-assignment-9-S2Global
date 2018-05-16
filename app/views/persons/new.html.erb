@@ -1,17 +1,18 @@
+<h1>New Person</h1>
 
 <%= form_tag("/persons/create", method: "POST") do %>
 
   <%= label_tag(:first_name, "First Name:") %>
-  <%= text_field(:person, :first_name) %>
+  <%= text_field_tag(:first_name) %>
 
   <%= label_tag(:last_name, "Last Name:") %>
-  <%= text_field(:person, :last_name) %>
+  <%= text_field_tag(:last_name) %>
 
   <%= label_tag(:birth_date, "Birth Date:") %>
-  <%= date_field(:person, :birth_date) %>
+  <%= date_field_tag(:birth_date) %>
 
   <%= label_tag(:description, "Description:") %>
-  <%= text_field(:person, :description) %>
+  <%= text_field_tag(:description) %>
 
   <%= label_tag(:role, "Actor") %>
   <%= radio_button_tag(:role, "Actor") %>
