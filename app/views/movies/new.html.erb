@@ -1,5 +1,19 @@
 <h1>New Movie</h1>
 
-<%= render 'form', movie: @movie %>
+<%= form_for @movie, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
 
-<%= link_to 'Back', movies_path %>
+  <%= f.label(:title, "Title:") %>
+  <%= f.text_field :title %>
+
+  <%= f.label(:description, "Description:") %>
+  <%= f.text_field :description %>
+
+  <%= f.label(:duration, "Duration:") %>
+  <%= f.number_field :duration %>
+
+  <%= f.label(:release_date, "Release Date:") %>
+  <%= f.date_select :release_date %>
+
+  <%= f.submit "Create" %>
+
+<% end %>
